@@ -7,7 +7,7 @@ public class DeviceType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long deviceTypeId;
-    private String Type;
+    private String type;
     @OneToOne
     private Device device;
 
@@ -16,7 +16,7 @@ public class DeviceType {
 
     public DeviceType(Long deviceTypeId, String type, Device device) {
         this.deviceTypeId = deviceTypeId;
-        Type = type;
+        this.type = type;
         this.device = device;
     }
 
@@ -29,11 +29,11 @@ public class DeviceType {
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
     public void setType(String type) {
-        Type = type;
+        this.type = type;
     }
 
     public Device getDevice() {
