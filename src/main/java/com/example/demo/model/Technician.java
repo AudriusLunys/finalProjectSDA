@@ -12,7 +12,7 @@ public class Technician {
     private String lastName;
     private String telephoneNumber;
     private String email;
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "technician")
+    @OneToMany
     private List<Device> repDeviceList;
 
     public Technician() {

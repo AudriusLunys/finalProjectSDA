@@ -14,7 +14,7 @@ public class Customer {
     private String telephoneNumber;
     @Column(nullable = false,unique = true)
     private String email;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    @OneToMany
     private List<Device> deviceList;
 
     public Customer() {
