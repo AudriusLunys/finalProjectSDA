@@ -16,4 +16,8 @@ public class DeviceService {
     public List<Device> findAllDevices() {
         return deviceRepository.findAll();
     }
+
+    public Device saveDevice (Device device){
+        return deviceRepository.save(device);
+    }
 }

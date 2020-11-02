@@ -14,20 +14,18 @@ public class Customer {
     private String telephoneNumber;
     @Column(nullable = false,unique = true)
     private String email;
-    private String password;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private List<Device> deviceList;
 
     public Customer() {
     }
 
-    public Customer(Long id, String firstName, String lastName, String telephoneNumber, String email, String password, List<Device> deviceList) {
+    public Customer(Long id, String firstName, String lastName, String telephoneNumber, String email, List<Device> deviceList) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephoneNumber = telephoneNumber;
         this.email = email;
-        this.password = password;
         this.deviceList = deviceList;
     }
 
@@ -69,14 +67,6 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public List<Device> getDeviceList() {

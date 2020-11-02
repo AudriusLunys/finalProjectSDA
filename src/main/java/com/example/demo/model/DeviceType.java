@@ -1,8 +1,9 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
-
+/*
 @Entity
+@Table(name="devicetype")
 public class DeviceType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,3 +45,4 @@ public class DeviceType {
         this.device = device;
     }
 }
+*/

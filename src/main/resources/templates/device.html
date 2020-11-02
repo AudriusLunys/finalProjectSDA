@@ -28,17 +28,20 @@
             <tbody>
             <tr th:each="device : ${device}">
                 <td th:text="${device.id}"></td>
-                <td th:text="${device.deviceType.type}"></td>
+
                 <td th:text="${device.manufacturer}"></td>
                 <td th:text="${device.model}"></td>
                 <td th:text="${device.serialNumber}"></td>
                 <td th:text="${device.failureDescription}"></td>
                 <td th:text="${device.repairStatus}"></td>
                 <td th:text="${device.repairDescription}"></td>
-                <td th:text="${device.customer.firstName}"></td>
-                <td th:text="${device.customer.lastName}"></td>
+                <td th:text="${device.customer.getFirstName()}"></td>
+
 
             </tr>
             </tbody>
         </table>
     </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Device</title>
+</head>
+<body>
+<form action="#" th:action="@{/register-device}" th:object="${device}" method="post">
+    <label for="manufacturer">Manufacturer</label>
+    <input type="text" th:field="*{manufacturer}" id="manufacturer" placeholder="manufacturer">
+    <label for="model">Model</label>
+    <input type="text" th:field="*{model}" id="model" placeholder="Model">
+    <label for="serialNumber">Serial Number</label>
+    <input type="text" th:field="*{serialNumber}" id="serialNumber" placeholder="Serial Number">
+    <label for="failureDescription">Failure description</label>
+    <input type="text" th:field="*{failureDescription}" id="failureDescription" placeholder="Failure description">
+
+
+    <input type="submit" value="Register Device">
+</form>
+</body>
+</html>

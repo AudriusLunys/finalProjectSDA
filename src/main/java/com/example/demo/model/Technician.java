@@ -12,22 +12,18 @@ public class Technician {
     private String lastName;
     private String telephoneNumber;
     private String email;
-    private String password;
-    private Boolean isAdmin;
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "technician")
     private List<Device> repDeviceList;
 
     public Technician() {
     }
 
-    public Technician(Long id, String firstName, String lastName, String telephoneNumber, String email, String password, Boolean isAdmin, List<Device> repDeviceList) {
+    public Technician(Long id, String firstName, String lastName, String telephoneNumber, String email, List<Device> repDeviceList) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephoneNumber = telephoneNumber;
         this.email = email;
-        this.password = password;
-        this.isAdmin = isAdmin;
         this.repDeviceList = repDeviceList;
     }
 
@@ -69,22 +65,6 @@ public class Technician {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Boolean getAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        isAdmin = admin;
     }
 
     public List<Device> getRepDeviceList() {

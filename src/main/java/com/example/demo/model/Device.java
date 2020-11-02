@@ -8,8 +8,8 @@ public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne
-    private DeviceType deviceType;
+  //  @OneToOne
+   // private DeviceType deviceType;
     private String manufacturer;
     private String model;
     private String serialNumber;
@@ -24,9 +24,8 @@ public class Device {
     public Device() {
     }
 
-    public Device(Long id, DeviceType deviceType, String manufacturer, String model, String serialNumber, String failureDescription, String repairStatus, String repairDescription, Customer customer, Technician technician) {
+    public Device(Long id, String manufacturer, String model, String serialNumber, String failureDescription, String repairStatus, String repairDescription, Customer customer, Technician technician) {
         this.id = id;
-        this.deviceType = deviceType;
         this.manufacturer = manufacturer;
         this.model = model;
         this.serialNumber = serialNumber;
@@ -43,14 +42,6 @@ public class Device {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public DeviceType getDeviceType() {
-        return deviceType;
-    }
-
-    public void setDeviceType(DeviceType deviceType) {
-        this.deviceType = deviceType;
     }
 
     public String getManufacturer() {
