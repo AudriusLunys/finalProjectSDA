@@ -47,7 +47,7 @@ public class DeviceRestController {
     }
 
     @DeleteMapping("/device/{id}")
-    public ResponseEntity<?> deleteCDevice(@PathVariable Long id) {
+    public ResponseEntity<?> deleteDevice(@PathVariable Long id) {
         deviceRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }

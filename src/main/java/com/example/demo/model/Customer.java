@@ -13,9 +13,11 @@ public class Customer {
     private Long id;
     @NonNull
     private String firstName;
+    @NonNull
     private String lastName;
+    @NonNull
     private String telephoneNumber;
-    @Column(nullable = false)
+    @NonNull
     private String email;
     @OneToMany
     private List<Device> deviceList;

@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import lombok.NonNull;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,9 +10,13 @@ public class Technician {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NonNull
     private String firstName;
+    @NonNull
     private String lastName;
+    @NonNull
     private String telephoneNumber;
+    @NonNull
     private String email;
     @OneToMany
     private List<Device> repDeviceList;

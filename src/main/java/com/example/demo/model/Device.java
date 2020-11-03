@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import lombok.NonNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,9 +12,13 @@ public class Device {
     private Long id;
     @OneToOne
     private DeviceType deviceType;
+    @NonNull
     private String manufacturer;
+    @NonNull
     private String model;
+    @NonNull
     private String serialNumber;
+    @NonNull
     private String failureDescription;
     private String repairStatus;
     private String repairDescription;
