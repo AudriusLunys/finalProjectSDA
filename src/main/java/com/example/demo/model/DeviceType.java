@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
-/*
+
 @Entity
 @Table(name="devicetype")
 public class DeviceType {
@@ -45,4 +45,4 @@ public class DeviceType {
         this.device = device;
     }
 }
-*/
+

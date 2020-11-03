@@ -8,8 +8,8 @@ public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-  //  @OneToOne
-   // private DeviceType deviceType;
+    @OneToOne
+    private DeviceType deviceType;
     private String manufacturer;
     private String model;
     private String serialNumber;
