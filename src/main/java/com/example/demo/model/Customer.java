@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import lombok.NonNull;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,10 +11,11 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NonNull
     private String firstName;
     private String lastName;
     private String telephoneNumber;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false)
     private String email;
     @OneToMany
     private List<Device> deviceList;
