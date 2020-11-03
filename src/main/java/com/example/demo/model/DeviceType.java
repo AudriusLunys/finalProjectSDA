@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class DeviceType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long deviceTypeId;
+    private Long Id;
     private String type;
     @OneToOne
     private Device device;
@@ -15,18 +15,18 @@ public class DeviceType {
     public DeviceType() {
     }
 
-    public DeviceType(Long deviceTypeId, String type, Device device) {
-        this.deviceTypeId = deviceTypeId;
+    public DeviceType(Long id, String type, Device device) {
+        Id = id;
         this.type = type;
         this.device = device;
     }
 
-    public Long getDeviceTypeId() {
-        return deviceTypeId;
+    public Long getId() {
+        return Id;
     }
 
-    public void setDeviceTypeId(Long deviceTypeId) {
-        this.deviceTypeId = deviceTypeId;
+    public void setId(Long id) {
+        Id = id;
     }
 
     public String getType() {
