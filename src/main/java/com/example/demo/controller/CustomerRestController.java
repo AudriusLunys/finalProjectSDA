@@ -39,7 +39,7 @@ public class CustomerRestController {
         return ResponseEntity.created(new URI("/api/customer" + result.getId())).body(result);
     }
 
-    //  kodel cia neredaguoja o deda nauja ?
+
     @PutMapping("/customer/{id}")
     public ResponseEntity<Customer> updateCustomer(@Valid @RequestBody Customer customer, @PathVariable Long id) {
         Customer result = customerRepository.save(customer);
