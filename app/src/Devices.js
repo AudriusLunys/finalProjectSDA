@@ -97,17 +97,19 @@ class Devices extends Component {
           return(<div>Loading...</div>)
           
           let optionList =     
-            DeviceTypes.map ( deviceType =>
-              <option id={deviceType.id}>
+            DeviceTypes.map ( (deviceType) =>
+              <option value={deviceType.id} key={deviceType.id}>
                   {deviceType.type}
               </option>
             )
+
+            
            
             let rows = 
                 Devices.map (device =>
                   <tr key={device.id}>
                     <td>{device.id}</td>
-                   <td>{device.deviceType}</td>
+                    <td>{device.deviceType}</td>
                    <td>{device.manufacturer}</td>
                    <td>{device.model}</td>
                    <td>{device.serialNumber}</td>
