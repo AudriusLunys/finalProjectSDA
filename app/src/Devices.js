@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AppNav from './AppNav'
+import AppNav from './AppNav';
 import './App.css';
 import { Button, Container, Form, FormGroup, Table } from 'reactstrap';
 import {Link} from 'react-router-dom';
@@ -127,32 +127,32 @@ class Devices extends Component {
 
                       <FormGroup>
                        <label for ="manufacturer">Manufacturer</label>
-                       <input type="text" name = "manufacturer" onChange={this.handleChange}></input>
+                       <input type="text" name = "manufacturer" id="manufacturer" onChange={this.handleChange}></input>
                       </FormGroup>
                       
                       <FormGroup>
                        <label for ="model">Model</label>
-                       <input type="text" name = "model" onChange={this.handleChange}></input>
+                       <input type="text" name = "model" id="model"onChange={this.handleChange}></input>
                       </FormGroup>
 
                       <FormGroup>
                        <label for ="serialNumber">Serial Number</label>
-                       <input type="text" name = "serialNumber" onChange={this.handleChange}></input>
+                       <input type="text" name = "serialNumber" id="serialNumber" onChange={this.handleChange}></input>
                       </FormGroup>
                        
                       <FormGroup>
                        <label for ="failureDescription">Failure description</label>
-                       <input type="text" name = "failureDescription" onChange={this.handleChange}></input>
+                       <input type="text" name = "failureDescription" id="failureDescription" onChange={this.handleChange}></input>
                       </FormGroup>
 
                       <FormGroup>
                        <label for ="repairStatus">Repair status</label>
-                       <input type="text" name = "repairStatus" onChange={this.handleChange}></input>
+                       <input type="text" name = "repairStatus" id="repairStatus" onChange={this.handleChange}></input>
                       </FormGroup>
                         
                       <FormGroup>
                        <label for ="repairDescription">Repair description</label>
-                       <input type="text" name = "repairDescription" onChange={this.handleChange}></input>
+                       <input type="text" name = "repairDescription" id="repairDescription" onChange={this.handleChange}></input>
                       </FormGroup>
                       
 
