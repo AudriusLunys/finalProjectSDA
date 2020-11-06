@@ -10,7 +10,7 @@ public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne
+    @ManyToOne
     private DeviceType deviceType;
     @NonNull
     private String manufacturer;

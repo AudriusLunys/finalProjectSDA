@@ -1,24 +1,25 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name="devicetype")
+@Table
 public class DeviceType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
     private String type;
-    @OneToOne
-    private Device device;
+    @OneToMany
+    private List<Device> deviceList;
 
     public DeviceType() {
     }
 
-    public DeviceType(Long id, String type, Device device) {
+    public DeviceType(Long id, String type, List<Device> deviceList) {
         Id = id;
         this.type = type;
-        this.device = device;
+        this.deviceList = deviceList;
     }
 
     public Long getId() {
@@ -37,12 +38,12 @@ public class DeviceType {
         this.type = type;
     }
 
-    public Device getDevice() {
-        return device;
+    public List<Device> getDeviceList() {
+        return deviceList;
     }
 
-    public void setDevice(Device device) {
-        this.device = device;
+    public void setDeviceList(List<Device> deviceList) {
+        this.deviceList = deviceList;
     }
 }
 

@@ -18,11 +18,60 @@ class Devices extends Component {
             DeviceTypes: [],
             Devices: [],
             item : this.emptyItem
-    
-    
          }
+         this.handleSubmit = this.handleSubmit.bind(this);
+         this.handleChange = this.handleChange.bind(this);
+
+     }
+     
+     async handleSubmit(event){
+       event.preventDefault();
+      const {item} = this.state;
+       await fetch(`/api/device` ,{
+       method: 'POST',
+       headers : {
+         'Accept' : 'application/json',
+         'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify(item),
+
+       });
+
+       this.props.history.push("/devices");
+
      }
 
+     handleChange(event) {
+      const target = event.target;
+      const value = target.value;
+      const name = target.name;
+      
+      let item={...this.state.item};
+      item[name] = value;
+      this.setState({item});
+
+     }
+
+
+
+
+
+
+
+     async remove(id){
+       await fetch (`api/device/${id}` , {
+         method: 'DELETE',
+         headers : {
+           'Accept' : 'application/json',
+           'Content-Type' : 'application/json'
+         }
+       } ).then (() => {
+         let updatedDevices = [...this.state.Devices].filter (i => i.id !== id);
+         this.setState({Devices : updatedDevices});
+       });
+
+       
+     }
 
     
      async componentDidMount () {
@@ -40,6 +89,7 @@ class Devices extends Component {
 
     render() { 
         const title = <h3>Register device</h3>
+        const title1 = <h3>Add user details</h3>
         const{DeviceTypes } = this.state;
         const{Devices , isLoading} = this.state;
 
@@ -55,7 +105,8 @@ class Devices extends Component {
            
             let rows = 
                 Devices.map (device =>
-                  <tr>
+                  <tr key={device.id}>
+                    <td>{device.id}</td>
                    <td>{device.deviceType}</td>
                    <td>{device.manufacturer}</td>
                    <td>{device.model}</td>
@@ -63,7 +114,7 @@ class Devices extends Component {
                    <td>{device.failureDescription}</td>
                    <td>{device.repairStatus}</td>
                    <td>{device.repairDescription}</td>
-                   
+                   <td><Button size="sm" color="danger" onClick={() => this.remove(device.id)}>Delete</Button> </td>
                    
                 
                   </tr>
@@ -75,7 +126,8 @@ class Devices extends Component {
                 <AppNav/>
                  <Container>
                    {title}
-                  <Form>
+                  <Form onSubmit={this.handleSubmit}>
+              
                   <FormGroup>
                        <label for ="deviceType">Device type</label>
                        <select>
@@ -103,6 +155,17 @@ class Devices extends Component {
                        <input type="text" name = "failureDescription" onChange={this.handleChange}></input>
                       </FormGroup>
 
+                      <FormGroup>
+                       <label for ="repairStatus">Repair status</label>
+                       <input type="text" name = "repairStatus" onChange={this.handleChange}></input>
+                      </FormGroup>
+                        
+                      <FormGroup>
+                       <label for ="repairDescription">Repair description</label>
+                       <input type="text" name = "repairDescription" onChange={this.handleChange}></input>
+                      </FormGroup>
+                      
+
                        <FormGroup>
                            <Button color = "primary" type="submit">Save</Button>{' '}
                            <Button color = "secondary" tag ={Link} to= "/">Cancel</Button>
@@ -119,6 +182,7 @@ class Devices extends Component {
                    <Table className="mt-4">
                        <thead>
                            <tr>
+                              <th>Device Id</th> 
                               <th>Device Type</th> 
                               <th>Manufacturer</th> 
                               <th>Model</th> 
