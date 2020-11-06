@@ -11,7 +11,7 @@ class Technicians extends Component {
         firstName : '',
         lastnName : '',
         telephoneNumber: '',
-        email: ''
+        email: '',
     }
 
     constructor(props){
@@ -20,11 +20,39 @@ class Technicians extends Component {
         this.state = {
             isLoading : true,
             Technicians : [],
-    
-            item : this.emptyItem
+              item : this.emptyItem
 
         }
+        this.handleSubmit=this.handleSubmit.bind(this);
+        this.handleChange=this.handleChange.bind(this);
     }
+
+       async handleSubmit(event){
+           const item = this.state.item;
+           
+           
+           await fetch (`/api/technician` , {
+               method : 'POST',
+               headers : {
+                   'Accept' : 'application/json',
+                   'Content-Type' : 'application/json'
+               },
+               body : JSON.stringify (item),
+           });
+           event.preventDefault();
+           this.props.history.push("/technicians");
+       }
+
+       handleChange(event){
+           const target = event.target;
+           const value = target.value;
+           const name = target.name;
+
+           let item={...this.state.item};
+        item[name] = value;
+        this.setState({item});
+       }
+
 
 
       async remove(id){

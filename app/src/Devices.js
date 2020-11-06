@@ -7,7 +7,11 @@ import {Link} from 'react-router-dom';
 class Devices extends Component {
 
      emptyItem = {
-
+      manufacturer : '',
+      model : '',
+      failureDescription: '',
+      repairStatus: '',
+      repairDescription: '',
      }
       
      constructor (props){
@@ -25,7 +29,7 @@ class Devices extends Component {
      }
      
      async handleSubmit(event){
-       event.preventDefault();
+       
       const {item} = this.state;
        await fetch(`/api/device` ,{
        method: 'POST',
@@ -36,7 +40,7 @@ class Devices extends Component {
         body : JSON.stringify(item),
 
        });
-
+       event.preventDefault();
        this.props.history.push("/devices");
 
      }
