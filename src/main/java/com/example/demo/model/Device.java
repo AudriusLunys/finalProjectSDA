@@ -30,8 +30,9 @@ public class Device {
     public Device() {
     }
 
-    public Device(Long id, String manufacturer, String model, String serialNumber, String failureDescription, String repairStatus, String repairDescription, Customer customer, Technician technician) {
+    public Device(Long id, DeviceType deviceType, @NonNull String manufacturer, @NonNull String model, @NonNull String serialNumber, @NonNull String failureDescription, String repairStatus, String repairDescription, Customer customer, Technician technician) {
         this.id = id;
+        this.deviceType = deviceType;
         this.manufacturer = manufacturer;
         this.model = model;
         this.serialNumber = serialNumber;
@@ -48,6 +49,14 @@ public class Device {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public DeviceType getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(DeviceType deviceType) {
+        this.deviceType = deviceType;
     }
 
     public String getManufacturer() {
