@@ -15,8 +15,8 @@ class Devices extends Component {
 
          this.state = { 
             isLoading :true,
-            DeviceTypes: [],
-            Devices: [],
+      
+          Devices: [],
             item : this.emptyItem
          }
          this.handleSubmit = this.handleSubmit.bind(this);
@@ -75,9 +75,7 @@ class Devices extends Component {
 
     
      async componentDidMount () {
-        const response = await fetch('/api/devicetypes')
-         const body = await response.json();
-         this.setState({DeviceTypes:body , isLoading : false});
+       
         
          const responseDevices = await fetch('/api/devices')
          const bodyDevices = await responseDevices.json();
@@ -90,26 +88,21 @@ class Devices extends Component {
     render() { 
         const title = <h3>Register device</h3>
         const title1 = <h3>Add user details</h3>
-        const{DeviceTypes } = this.state;
+    
         const{Devices , isLoading} = this.state;
 
         if (isLoading)
           return(<div>Loading...</div>)
           
-          let optionList =     
-            DeviceTypes.map ( (deviceType) =>
-              <option value={deviceType.id} key={deviceType.id}>
-                  {deviceType.type}
-              </option>
-            )
+         
 
             
            
             let rows = 
                 Devices.map (device =>
-                  <tr key={device.id}>
+                  <tr>
                     <td>{device.id}</td>
-                    <td>{device.deviceType}</td>
+                  
                    <td>{device.manufacturer}</td>
                    <td>{device.model}</td>
                    <td>{device.serialNumber}</td>
@@ -130,12 +123,7 @@ class Devices extends Component {
                    {title}
                   <Form onSubmit={this.handleSubmit}>
               
-                  <FormGroup>
-                       <label for ="deviceType">Device type</label>
-                       <select>
-                        {optionList}
-                       </select>
-                      </FormGroup>
+                  
 
                       <FormGroup>
                        <label for ="manufacturer">Manufacturer</label>
@@ -185,7 +173,7 @@ class Devices extends Component {
                        <thead>
                            <tr>
                               <th>Device Id</th> 
-                              <th>Device Type</th> 
+                              
                               <th>Manufacturer</th> 
                               <th>Model</th> 
                               <th>Serial Mumber</th> 
