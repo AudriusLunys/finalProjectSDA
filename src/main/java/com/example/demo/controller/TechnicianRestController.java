@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Device;
+
 import com.example.demo.model.Technician;
-import com.example.demo.repository.TechnicianRepository;
 import com.example.demo.service.TechnicianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
