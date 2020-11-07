@@ -10,8 +10,6 @@ public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    // @ManyToOne
-    //   private DeviceType deviceType;
     @NonNull
     private String manufacturer;
     @NonNull
@@ -26,7 +24,8 @@ public class Device {
     private Customer customer;
     @ManyToOne
     private Technician technician;
-
+    //@Transient  nesaugo duomenu i DB
+    //private Long customerId;
     public Device() {
     }
 

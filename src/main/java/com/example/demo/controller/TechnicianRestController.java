@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Device;
 import com.example.demo.model.Technician;
 import com.example.demo.repository.TechnicianRepository;
+import com.example.demo.service.TechnicianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,36 +20,36 @@ import java.util.Optional;
 public class TechnicianRestController {
 
     @Autowired
-    private TechnicianRepository technicianRepository;
+    private TechnicianService technicianService;
 
     @GetMapping("/technicians")
     public List<Technician> getTechnicianList() {
-        return technicianRepository.findAll();
+        return technicianService.findAll();
     }
 
     @GetMapping("/technician/{id}")
     public ResponseEntity<?> getTechnicianById(@PathVariable Long id) {
-        Optional<Technician> technician = technicianRepository.findById(id);
+        Optional<Technician> technician = technicianService.findById(id);
         return technician.map(response -> ResponseEntity.ok().body(response)).orElse
                 (new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
     }
-
+     // pervadint result i technicianResult
     @PostMapping("/technician")
     public ResponseEntity<Technician> addTechnician(@Valid @RequestBody Technician technician) throws URISyntaxException {
-        Technician result = technicianRepository.save(technician);
-        return ResponseEntity.created(new URI("/api/technician" + result.getId())).body(result);
+        Technician technicianResult = technicianService.saveTechnician(technician);
+        return ResponseEntity.created(new URI("/api/technician" + technicianResult.getId())).body(technicianResult);
     }
 
     @PutMapping("/technician/{id}")
     public ResponseEntity<Technician> updateTechnician(@Valid @RequestBody Technician technician, @PathVariable Long id) {
-        Technician result = technicianRepository.save(technician);
-        return ResponseEntity.ok().body(result);
+        Technician technicianResult = technicianService.saveTechnician(technician);
+        return ResponseEntity.ok().body(technicianResult);
     }
 
     @DeleteMapping("/technician/{id}")
     public ResponseEntity<?> deleteTechnician(@PathVariable Long id) {
-        technicianRepository.deleteById(id);
+        technicianService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 

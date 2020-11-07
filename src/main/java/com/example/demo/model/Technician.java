@@ -20,7 +20,7 @@ public class Technician {
     private String email;
     @OneToMany
     private List<Device> repDeviceList;
-
+  // pervadint i repairableDeviceList
     public Technician() {
     }
 
