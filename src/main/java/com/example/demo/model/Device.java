@@ -1,5 +1,10 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
@@ -8,28 +13,33 @@ import javax.persistence.*;
 public class Device {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NonNull
+
     private String manufacturer;
-    @NonNull
+
     private String model;
-    @NonNull
+
     private String serialNumber;
-    @NonNull
+
     private String failureDescription;
     private String repairStatus;
     private String repairDescription;
+
     @ManyToOne
+    @JoinColumn(name="customer_id",nullable = true)
+    @JsonBackReference(value = "customer")
     private Customer customer;
+
     @ManyToOne
+    @JoinColumn(name="device_id", nullable =true)
+    @JsonBackReference(value = "technician")
     private Technician technician;
-    //@Transient  nesaugo duomenu i DB
-    //private Long customerId;
+
     public Device() {
     }
 
-    public Device(Long id, @NonNull String manufacturer, @NonNull String model, @NonNull String serialNumber, @NonNull String failureDescription, String repairStatus, String repairDescription, Customer customer, Technician technician) {
+    public Device(Long id, String manufacturer, String model, String serialNumber, String failureDescription, String repairStatus, String repairDescription, Customer customer, Technician technician) {
         this.id = id;
         this.manufacturer = manufacturer;
         this.model = model;

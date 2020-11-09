@@ -1,5 +1,9 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
@@ -9,17 +13,20 @@ import java.util.List;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NonNull
+
     private String firstName;
-    @NonNull
+
     private String lastName;
-    @NonNull
+
     private String telephoneNumber;
-    @NonNull
+
     private String email;
-    @OneToMany
+
+
+    @OneToMany(mappedBy = "customer")
+    @JsonManagedReference(value = "customer")
     private List<Device> deviceList;
 
     public Customer() {
