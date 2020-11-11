@@ -95,6 +95,7 @@ class Technicians extends Component {
                     <td>{technician.lastName}</td>
                     <td>{technician.telephoneNumber}</td>
                     <td>{technician.email}</td>
+                    
                     <td><Button size="sm" color="danger" onClick={() => this.remove(technician.id)}>Delete</Button> </td>
 
                 </tr>
@@ -149,6 +150,7 @@ class Technicians extends Component {
                              <th>Tel Number</th>
                              <th>Email</th>
                              <th>Action</th>
+                             
                          </tr>
                      </thead>
                    <tbody>

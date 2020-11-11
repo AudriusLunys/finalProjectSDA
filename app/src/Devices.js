@@ -91,16 +91,14 @@ class Devices extends Component {
 
     render() { 
         const title = <h3>Register device</h3>
-        const title1 = <h3>Add user details</h3>
+        
     
         const{Devices , isLoading} = this.state;
 
         if (isLoading)
           return(<div>Loading...</div>)
           
-         
-
-            
+        
            
             let rows = 
                 Devices.map (device =>
