@@ -1,11 +1,7 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+
 
 import javax.persistence.*;
 
@@ -32,7 +28,7 @@ public class Device {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name="device_id", nullable =true)
+    @JoinColumn(name="technician_id", nullable =true)
     @JsonBackReference(value = "technician")
     private Technician technician;
 

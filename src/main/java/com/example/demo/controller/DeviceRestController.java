@@ -13,7 +13,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin (origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class DeviceRestController {
@@ -21,7 +21,7 @@ public class DeviceRestController {
     @Autowired
     private DeviceService deviceService;
 
-    @GetMapping("/devices")
+    @GetMapping("/device")
     public List<Device> getDeviceList() {
         return deviceService.findAll();
     }
