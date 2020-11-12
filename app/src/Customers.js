@@ -10,6 +10,7 @@ import CustomerService from './services/CustomerService';
 class Customers extends Component {
 
     emptyItem = {
+        id: this.props.match.params.id,
         firstName: '',
         lastName : '',
         telephoneNumber: '',
@@ -23,12 +24,24 @@ class Customers extends Component {
         this.state ={
             Customers :[],
 
-            customer : this.emptyItem
-
+            customer : this.emptyItem,
+           
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.editCustomer = this.editCustomer.bind (this);
+    }
+
+   
+
+    editCustomer(event){
+        const {id} = this.state;
+        CustomerService.updateCustomer(id).then (response =>{
+            this.props.history.push(`/updatecustomer/${id}`);
+
+        });
+            
     }
 
   handleSubmit(event){
@@ -73,7 +86,7 @@ class Customers extends Component {
              <td>{customer.lastName}</td>
              <td>{customer.telephoneNumber}</td>
              <td>{customer.email}</td>
-             
+             <td><Button size="sm" color="primary" onClick={() =>this.editCustomer(customer.id) }>Edit</Button> </td>
              <td><Button size="sm" color="danger" onClick={() => this.remove(customer.id)}>Delete</Button> </td>
              
           
@@ -135,7 +148,7 @@ class Customers extends Component {
                               <th>Tel. Number</th> 
                               <th>Email</th> 
                               <th>Action</th>
-
+                              <th>Action</th>
                            </tr>
                        </thead>
                        <tbody>

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.azure.core.exception.ResourceNotFoundException;
 import com.example.demo.model.Customer;
 import com.example.demo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class CustomerRestController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/customers")
+    @GetMapping("/customer")
     public List<Customer> getCustomersList() {
         return customerService.findAll();
     }
