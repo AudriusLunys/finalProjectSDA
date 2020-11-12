@@ -13,7 +13,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin (origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class TechnicianRestController {
@@ -21,7 +21,7 @@ public class TechnicianRestController {
     @Autowired
     private TechnicianService technicianService;
 
-    @GetMapping("/technicians")
+    @GetMapping("/technician")
     public List<Technician> getTechnicianList() {
         return technicianService.findAll();
     }
