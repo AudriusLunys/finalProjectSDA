@@ -19,6 +19,7 @@ class ListDevice extends Component {
     }
 
     render() {
+        console.log(this.state.devices);
         return (
             <div className = "container">
            <div> 
@@ -36,8 +37,8 @@ class ListDevice extends Component {
                             <thead>
                                 <tr>
                                     <th> Id</th>
-                                    <th> Customer Id</th>
-                                    <th> Technician Id</th>
+                                    <th> Cust Id</th>
+                                    <th> Tech Id</th>
                                     <th> Manufacturer</th>
                                     <th> Model</th>
                                     <th> Serial Number</th>
@@ -53,8 +54,8 @@ class ListDevice extends Component {
                                         device => 
                                         <tr key = {device.id}>
                                             <td> { device.id} </td> 
-                                            
-                                            
+                                            <td> { device.customer.id} </td> 
+                                            <td> { device.technician.id} </td> 
                                              <td> {device.manufacturer} </td>   
                                              <td> {device.model}</td>
                                              <td> {device.serialNumber}</td>
@@ -72,6 +73,8 @@ class ListDevice extends Component {
                                 }
                             </tbody>
                         </table>
+
+                        
 
                  </div>
 

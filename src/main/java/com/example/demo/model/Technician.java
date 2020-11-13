@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +10,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 public class Technician {
     @Id
@@ -25,8 +29,8 @@ public class Technician {
 
 
 
-    @OneToMany(mappedBy = "technician")
-    @JsonManagedReference (value = "technician")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "technician")
+
     private List<Device> repDeviceList;
 
     public Technician() {
