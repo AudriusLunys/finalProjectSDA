@@ -9,6 +9,7 @@ class ListDevice extends Component {
         this.state = {
                 devices: []
         }
+        this.addDevice = this.addDevice.bind(this);
         
         
     }
@@ -16,6 +17,10 @@ class ListDevice extends Component {
         DeviceService.getDevices().then((res) => {
             this.setState({ devices: res.data});
         });
+    }
+
+    addDevice(){
+        this.props.history.push('/add-device');
     }
 
     render() {
@@ -37,8 +42,7 @@ class ListDevice extends Component {
                             <thead>
                                 <tr>
                                     <th> Id</th>
-                                    <th> Cust Id</th>
-                                    <th> Tech Id</th>
+                                   
                                     <th> Manufacturer</th>
                                     <th> Model</th>
                                     <th> Serial Number</th>
@@ -54,8 +58,7 @@ class ListDevice extends Component {
                                         device => 
                                         <tr key = {device.id}>
                                             <td> { device.id} </td> 
-                                            <td> { device.customer.id} </td> 
-                                            <td> { device.technician.id} </td> 
+                                    
                                              <td> {device.manufacturer} </td>   
                                              <td> {device.model}</td>
                                              <td> {device.serialNumber}</td>

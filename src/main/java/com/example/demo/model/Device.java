@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
@@ -28,12 +29,10 @@ public class Device {
 
     @ManyToOne
     @JoinColumn(name="customer_id",nullable = true)
-
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name="technician_id", nullable =true)
-
     private Technician technician;
 
     public Device() {
