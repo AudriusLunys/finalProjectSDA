@@ -60,6 +60,7 @@ class CustomerServiceTest {
         given(customerRepository.save(customer)).willReturn(customer);
         final Customer expected = customerService.saveCustomer(customer);
         Assertions.assertNotNull(expected);
+
         verify(customerRepository).save(any(Customer.class));
 
     }
