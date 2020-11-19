@@ -54,7 +54,7 @@ class UpdateTechnician extends Component {
     }
 
     changeEmailHandler= (event) => {
-        this.setState({emailId: event.target.value});
+        this.setState({email: event.target.value});
     }
 
     cancel(){

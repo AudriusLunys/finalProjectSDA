@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import DeviceService from '../services/DeviceService';
-import TechnicianService from '../services/TechninianService';
 
-class CreateDevice extends Component {
+class UpdateDevice extends Component {
     constructor(props) {
         super(props)
 
@@ -16,31 +15,37 @@ class CreateDevice extends Component {
             failureDescription: '',
             repairStatus: '',
             repairDescription: '',
-           
           
         }
-    
         this.changeManufacturerHandler = this.changeManufacturerHandler.bind(this);
         this.changeModelHandler = this.changeModelHandler.bind(this);
         this.changeSerNumberHandler = this.changeSerNumberHandler.bind(this);
         this.changeFailureHandler = this.changeFailureHandler.bind(this);
         this.changeRepairStatusHandler= this.changeRepairStatusHandler.bind(this);
         this.changeRepDescriptionHandler = this.changeRepDescriptionHandler.bind(this);
-
-      
-
-        this.saveDevice = this.saveDevice.bind(this);
     }
 
-    saveDevice = (e) => {
-        e.preventDefault();
-        let device = {manufacturer: this.state.manufacturer, model: this.state.model, serialNumber: this.state.serialNumber, failureDescription: this.state.failureDescription, repairStatus: this.state.repairStatus, repairDescription: this.state.repairDescription };
-        console.log('device => ' + JSON.stringify(device));
+    componentDidMount(){
+        DeviceService.getDeviceById(this.state.id).then( (res) =>{
+            let device = res.data;
+            this.setState({manufacturer: device.manufacturer,
+                model: device.model,
+                serialNumber: device.serialNumber,
+                failureDescription: device.failureDescription,
+                repairStatus: device.repairStatus,
+                repairDescription: device.repairDescription
+            });
+        });
+    }
 
-        DeviceService.createDevice(device).then (res =>{
+    updateDevice = (e) => {
+        e.preventDefault();
+        let device= {id:this.state.id, manufacturer: this.state.manufacturer, model: this.state.model, serialNumber:this.state.serialNumber , failureDescription: this.state.failureDescription, repairStatus:this.state.repairStatus, repairDescription: this.state.repairDescription };
+        console.log('device => ' + JSON.stringify(device));
+        console.log('id => ' + JSON.stringify(this.state.id));
+        DeviceService.updateDevice(device, this.state.id).then( res => {
             this.props.history.push('/devices');
         });
-
     }
     
     changeManufacturerHandler = (event) => {
@@ -60,24 +65,16 @@ class CreateDevice extends Component {
         this.setState({repairStatus: event.target.value});
     }
 
+
     changeRepDescriptionHandler=(event) => {
          this.setState({repairDescription: event.target.value});
      }
-    
-     
-     
 
-     cancel (){
-         this.props.history.push('/devices');
-     }
-     
-     componentDidMount(){
-        TechnicianService.getTechnicians().then((res) => {
-            this.setState({ technicians: res.data});
-        });
+     cancel(){
+        this.props.history.push('/devices');
     }
-    
-    render() {
+
+     render() {
 
      
        
@@ -88,7 +85,7 @@ class CreateDevice extends Component {
                <div className = "container">
                     <div className = "row">
                         <div className = "card col-md-6 offset-md-3 offset-md-3">
-                            <h3 className="text-center">Add Device</h3>
+                            <h3 className="text-center">Update Device</h3>
                             <div className = "card-body">
                                 <form>
                                     <div className = "form-group">
@@ -123,7 +120,7 @@ class CreateDevice extends Component {
                                 </div>
 
 
-                                    <button className="btn btn-success" onClick={this.saveDevice}>Save</button>
+                                    <button className="btn btn-success" onClick={this.updateDevice}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                                 </form>
                             </div>
@@ -134,6 +131,7 @@ class CreateDevice extends Component {
         </div>
         )
     }
-}    
 
-export default CreateDevice
+}
+
+export default UpdateDevice

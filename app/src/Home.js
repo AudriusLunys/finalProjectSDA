@@ -10,10 +10,12 @@ class Home extends Component {
     render() { 
         return (
             <div>
-             <AppNav/>
+              <div>
+              <AppNav/>
+              </div>
+            
              <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
-               Welcome! This is Repair management application for small service 
-               providers 
+               Welcome! This is only a CRUD APP :(
                </h2>
               </div>
             );

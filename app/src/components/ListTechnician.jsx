@@ -37,10 +37,11 @@ class ListTechnician extends Component {
 
     render() {
         return (
-            <div className = "container">
-           <div> 
+            <div> 
               <AppNav/>
-            <div>
+            
+            <div className = "container">
+           
                 
                  <h2 className="text-center">Technicians List</h2>
                  <div className = "row">
@@ -86,7 +87,7 @@ class ListTechnician extends Component {
 
             </div>
             </div>
-      </div>
+     
         )
     }
 }

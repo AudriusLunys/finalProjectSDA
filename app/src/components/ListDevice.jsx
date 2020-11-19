@@ -10,9 +10,22 @@ class ListDevice extends Component {
                 devices: []
         }
         this.addDevice = this.addDevice.bind(this);
+        this.editDevice = this.editDevice.bind(this);
+        this.deleteDevice=this.deleteDevice.bind(this);
         
         
     }
+    deleteDevice(id){
+        DeviceService.deleteDevice(id).then( res => {
+            this.setState({devices: this.state.devices.filter(device => device.id !== id)});
+        });
+    }
+
+    editDevice(id){
+        this.props.history.push(`/update-device/${id}`);
+    }
+
+
     componentDidMount(){
         DeviceService.getDevices().then((res) => {
             this.setState({ devices: res.data});
@@ -26,10 +39,11 @@ class ListDevice extends Component {
     render() {
         console.log(this.state.devices);
         return (
-            <div className = "container">
-           <div> 
+            <div> 
               <AppNav/>
-            <div>
+           
+            <div className = "container">
+           
                 
                  <h2 className="text-center">Device List</h2>
                  <div className = "row">
@@ -83,7 +97,7 @@ class ListDevice extends Component {
 
             </div>
             </div>
-      </div>
+      
         )
     }
 }

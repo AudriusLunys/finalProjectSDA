@@ -37,10 +37,11 @@ class ListCustomer extends Component {
 
     render() {
         return (
-            <div className = "container">
-           <div> 
+            <div> 
               <AppNav/>
-            <div>
+            
+            <div className = "container">
+          
                 
                  <h2 className="text-center">Customers List</h2>
                  <div className = "row">
@@ -86,7 +87,7 @@ class ListCustomer extends Component {
 
             </div>
             </div>
-      </div>
+    
         )
     }
 }

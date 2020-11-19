@@ -9,8 +9,8 @@ import CreateTechnician from './components/CreateTechnician';
 import UpdateTechnician from './components/UpdateTechnician';
 import ListDevice from './components/ListDevice';
 import CreateDevice from './components/CreateDevice';
+import UpdateDevice from './components/UpdateDevice';
 
-import test from './components/test';
 
 class App extends Component {
     state = {  }
@@ -27,7 +27,7 @@ class App extends Component {
                      <Route path='/add-technician' exact={true} component={CreateTechnician}/>
                      <Route path='/update-technician/:id' exact={true} component={UpdateTechnician}/>
                      <Route path='/add-device' exact={true} component={CreateDevice}/>
-                     <Route path='/test' exact={true} component={test}/>
+                     <Route path='/update-device/:id' exact={true} component={UpdateDevice}/>
                 </Switch>
              </Router>
         );
