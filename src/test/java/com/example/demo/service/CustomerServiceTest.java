@@ -8,11 +8,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
@@ -33,7 +31,7 @@ class CustomerServiceTest {
         final Long id = 1L;
         final Customer customer = new Customer();
         customer.setFirstName("test");
-        customer.setFirstName("as");
+        customer.setLastName("as");
         given(customerRepository.findById(id)).willReturn(Optional.of(customer));
         final Optional<Customer> expected = customerService.findById(id);
         Assertions.assertNotNull(expected);
@@ -55,7 +53,7 @@ class CustomerServiceTest {
     void saveCustomer() {
         final Customer customer = new Customer();
         customer.setFirstName("test");
-        customer.setFirstName("as");
+        customer.setLastName("as");
 
         given(customerRepository.save(customer)).willReturn(customer);
         final Customer expected = customerService.saveCustomer(customer);

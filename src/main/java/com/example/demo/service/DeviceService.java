@@ -26,7 +26,8 @@ public class DeviceService {
         return deviceRepository.save(device);
 
     }
-    public void deleteById (Long id) {
+
+    public void deleteById(Long id) {
         deviceRepository.deleteById(id);
     }
 }

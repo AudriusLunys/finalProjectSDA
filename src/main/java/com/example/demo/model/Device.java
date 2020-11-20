@@ -1,12 +1,12 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 import javax.persistence.*;
+
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
@@ -28,11 +28,11 @@ public class Device {
     private String repairDescription;
 
     @ManyToOne
-    @JoinColumn(name="customer_id",nullable = true)
+    @JoinColumn(name = "customer_id", nullable = true)
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name="technician_id", nullable =true)
+    @JoinColumn(name = "technician_id", nullable = true)
     private Technician technician;
 
     public Device() {

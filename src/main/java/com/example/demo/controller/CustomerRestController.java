@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-
 import com.example.demo.model.Customer;
 import com.example.demo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-@CrossOrigin (origins = "http://localhost:3000")
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class CustomerRestController {
@@ -37,7 +37,7 @@ public class CustomerRestController {
     @PostMapping("/customer")
     public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer) throws URISyntaxException {
         Customer customerResult = customerService.saveCustomer(customer);
-        return ResponseEntity.created(new URI("/api/customer" + customerResult .getId())).body(customerResult );
+        return ResponseEntity.created(new URI("/api/customer" + customerResult.getId())).body(customerResult);
     }
 
 

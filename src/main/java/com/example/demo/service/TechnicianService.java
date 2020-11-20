@@ -27,7 +27,8 @@ public class TechnicianService {
         return technicianRepository.save(technician);
 
     }
-    public void deleteById (Long id) {
+
+    public void deleteById(Long id) {
         technicianRepository.deleteById(id);
     }
 }

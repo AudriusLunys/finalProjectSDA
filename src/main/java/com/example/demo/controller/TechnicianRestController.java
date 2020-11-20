@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-
 import com.example.demo.model.Technician;
 import com.example.demo.service.TechnicianService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-@CrossOrigin (origins = "http://localhost:3000")
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class TechnicianRestController {
@@ -33,7 +33,8 @@ public class TechnicianRestController {
                 (new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
     }
-     // pervadint result i technicianResult
+
+    // pervadint result i technicianResult
     @PostMapping("/technician")
     public ResponseEntity<Technician> addTechnician(@Valid @RequestBody Technician technician) throws URISyntaxException {
         Technician technicianResult = technicianService.saveTechnician(technician);
