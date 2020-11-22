@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import DeviceService from '../services/DeviceService';
 import TechnicianService from '../services/TechninianService';
+import CustomerService from '../services/CustomerService';
+
 
 class CreateDevice extends Component {
     constructor(props) {
@@ -8,6 +10,9 @@ class CreateDevice extends Component {
 
         this.state = {
             
+            customers: [],
+            technicians: [],
+
             id: this.props.match.params.id,
            
             manufacturer: '',
@@ -16,7 +21,9 @@ class CreateDevice extends Component {
             failureDescription: '',
             repairStatus: '',
             repairDescription: '',
-           
+            customer : '',
+            technician : '',
+            
           
         }
     
@@ -26,7 +33,7 @@ class CreateDevice extends Component {
         this.changeFailureHandler = this.changeFailureHandler.bind(this);
         this.changeRepairStatusHandler= this.changeRepairStatusHandler.bind(this);
         this.changeRepDescriptionHandler = this.changeRepDescriptionHandler.bind(this);
-
+        this.changeCustomerHandler = this.changeCustomerHandler.bind(this);
       
 
         this.saveDevice = this.saveDevice.bind(this);
@@ -34,7 +41,7 @@ class CreateDevice extends Component {
 
     saveDevice = (e) => {
         e.preventDefault();
-        let device = {manufacturer: this.state.manufacturer, model: this.state.model, serialNumber: this.state.serialNumber, failureDescription: this.state.failureDescription, repairStatus: this.state.repairStatus, repairDescription: this.state.repairDescription };
+        let device = {manufacturer: this.state.manufacturer, model: this.state.model, serialNumber: this.state.serialNumber, failureDescription: this.state.failureDescription, repairStatus: this.state.repairStatus, repairDescription: this.state.repairDescription  };
         console.log('device => ' + JSON.stringify(device));
 
         DeviceService.createDevice(device).then (res =>{
@@ -64,7 +71,9 @@ class CreateDevice extends Component {
          this.setState({repairDescription: event.target.value});
      }
     
-     
+     changeCustomerHandler = (event) => {
+         this.setState({customer: event.target.value});
+     }
      
 
      cancel (){
@@ -75,12 +84,25 @@ class CreateDevice extends Component {
         TechnicianService.getTechnicians().then((res) => {
             this.setState({ technicians: res.data});
         });
+
+        CustomerService.getCustomers().then((res) => {
+            this.setState({ customers: res.data});
+        });
     }
+
+  
     
     render() {
-
-     
        
+   
+       let customerList = this.state.customers.map ((customer) =>
+       <option value={customer.id}>{customer.firstName}</option>
+       );
+
+       
+       let technicianList = this.state.technicians.map ((technician) =>
+       <option value={technician.id}>{technician.firstName}</option>
+       );
 
         return (
             <div>
@@ -121,8 +143,21 @@ class CreateDevice extends Component {
                                     <input placeholder="Repair Description" name="repairDescription" className="form-control"
                                     value={this.state.repairDescription} onChange={this.changeRepDescriptionHandler} />
                                 </div>
+                                  <div className = "form-group">
+                                  <label>Assign Customer</label>
+                                      <select  onChange={this.changeCustomerHandler}>
+                                      {customerList}
+                                      </select>
+                                  </div>
 
-
+                                  <div className = "form-group">
+                                  <label>Assign Technician</label>
+                                      <select>
+                                          {technicianList}   
+                                      </select>
+                                  </div>
+                               
+                            
                                     <button className="btn btn-success" onClick={this.saveDevice}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                                 </form>

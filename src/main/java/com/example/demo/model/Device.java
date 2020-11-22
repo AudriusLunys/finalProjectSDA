@@ -1,15 +1,13 @@
 package com.example.demo.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 
 import javax.persistence.*;
 
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+
 @Entity
 public class Device {
 
@@ -29,10 +27,12 @@ public class Device {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = true)
+    @JsonBackReference (value = "customer")
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "technician_id", nullable = true)
+    @JsonBackReference (value = "technician")
     private Technician technician;
 
     public Device() {

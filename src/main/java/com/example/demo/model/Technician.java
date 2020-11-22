@@ -1,14 +1,11 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+
 @Entity
 public class Technician {
     @Id
@@ -25,7 +22,7 @@ public class Technician {
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "technician")
-
+    @JsonManagedReference (value = "technician")
     private List<Device> repDeviceList;
 
     public Technician() {

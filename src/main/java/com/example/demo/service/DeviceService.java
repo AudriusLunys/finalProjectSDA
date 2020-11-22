@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Customer;
 import com.example.demo.model.Device;
 import com.example.demo.repository.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
